@@ -23,7 +23,7 @@
 ```
   img_name path
 ```
-#see sample to know more
+##Example
 ```
 working
 ```
