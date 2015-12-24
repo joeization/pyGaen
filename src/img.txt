@@ -1,0 +1,6 @@
+bk img/background.png
+di img/dialog_tra.png
+chin img/choice(n)_tra.png
+chiy img/choice(y)_tra.png
+ava img/avatar.png
+kola img/kola.png

@@ -11,7 +11,7 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('alpha')
 imglib = {}
-imgres = open('img.txt', 'r')
+imgres = open('src/img.txt', 'r')
 for img in imgres:
     n, tar = map(str, img.strip().split(' '))
     i = pygame.image.load(tar).convert_alpha()
@@ -19,8 +19,8 @@ for img in imgres:
 
 font18 = pygame.font.SysFont('simhei', 18)
 font24 = pygame.font.SysFont('simhei', 24)
-cho = Text('dia.txt')
-dia = Text('cho.txt')
+cho = Text('src/dia.txt')
+dia = Text('src/cho.txt')
 ds = []
 cs = []
 if dia.has():
