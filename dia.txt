@@ -1,0 +1,35 @@
+dialog 0
+1 -1
+none
+測試用
+end
+
+dialog 1
+-1 0
+kola
+出現一隻無尾熊
+end
+
+dialog 2
+4 -1
+none
+被無尾熊抓傷了
+end
+
+dialog 3
+5 -1
+none
+什麼也沒發生
+end
+
+dialog 4
+-2 -1
+none
+BE
+end
+
+dialog 5
+-2 -1
+none
+NE
+end

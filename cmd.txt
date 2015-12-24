@@ -1,0 +1,12 @@
+dialog (no | not require)
+(next dialog no | -1 = None, -2 = Exit) (choice no | -1 = None)
+(img)
+<content>
+...
+end
+----------------------------------
+choice (no | not require)
+<choice>
+(dialog no)
+...
+end
