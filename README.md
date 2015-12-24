@@ -1,5 +1,5 @@
 # pyGaen
-##to use</br>
+##to use
 ###dia.txt
 ```
   dialog (no | not require)
@@ -23,5 +23,7 @@
 ```
   img_name path
 ```
-
 #see sample to know more
+```
+working
+```
