@@ -1,35 +1,55 @@
 dialog 0
+STOP
 1 -1
+1
 none
 測試用
 end
 
 dialog 1
--1 0
-kola
-出現一隻無尾熊
+STOP
+2 -1
+1
+none
+遭遇戰
 end
 
 dialog 2
-4 -1
+battle
+-1 0
+1
+koala2
+野生的無尾熊出現了！
+end
+
+dialog 3
+FADE
+5 -1
+1
 none
 被無尾熊抓傷了
 end
 
-dialog 3
-5 -1
+dialog 4
+FADE
+6 -1
+1
 none
 什麼也沒發生
 end
 
-dialog 4
+dialog 5
+STOP
 -2 -1
+0
 none
 BE
 end
 
-dialog 5
+dialog 6
+STOP
 -2 -1
+0
 none
 NE
 end

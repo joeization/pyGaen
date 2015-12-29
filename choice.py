@@ -20,6 +20,5 @@ class Choice:
     def to(self):
         return self.value
 
-
 def cgetpos(i):
     return (225, 100 + i * 75)

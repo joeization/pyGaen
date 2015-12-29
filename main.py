@@ -5,6 +5,8 @@ import pygame._view
 from dialog import *
 from choice import *
 from text import *
+from saveload import *
+from bgm import *
 from sys import exit
 
 pygame.init()
@@ -17,12 +19,25 @@ for img in imgres:
     i = pygame.image.load(tar).convert_alpha()
     imglib[n] = i
 
+sfxlib = {}
+sfxres = open('src/sfx.txt', 'r')
+for sfx in sfxres:
+    n, tar = map(str, sfx.strip().split(' '))
+    sfxlib[n] = tar
+sfplayer = Bgm('')
+
 font18 = pygame.font.SysFont('simhei', 18)
 font24 = pygame.font.SysFont('simhei', 24)
 cho = Text('src/dia.txt')
 dia = Text('src/cho.txt')
 ds = []
 cs = []
+choosed = []
+dpos = 0
+cpos = -1
+vimg = False
+pick = -1
+clock = pygame.time.Clock()
 if dia.has():
     while True:
         ne = dia.parse()
@@ -30,11 +45,12 @@ if dia.has():
         if ne[0] == -1:
             break
         elif ne[0] == 0:
-            ds.append(Dialog(ne[1], font24, ne[2], ne[3], ne[4]))
+            ds.append(Dialog(ne[1], font24, ne[2], ne[3], ne[4], ne[5], ne[6]))
         elif ne[0] == 1:
             cc = []
             for chi in ne[1]:
                 cc.append(Choice(chi[0], font18, chi[1], chi[2]))
+            choosed.append(-1)
             cs.append(cc)
 if cho.has():
     while True:
@@ -43,25 +59,27 @@ if cho.has():
         if ne[0] == -1:
             break
         elif ne[0] == 0:
-            ds.append(Dialog(ne[1], font24, ne[2], ne[3], ne[4]))
+            ds.append(Dialog(ne[1], font24, ne[2], ne[3], ne[4], ne[5], ne[6]))
         elif ne[0] == 1:
             cc = []
             for chi in ne[1]:
                 cc.append(Choice(chi[0], font18, chi[1], chi[2]))
+            choosed.append(-1)
             cs.append(cc)
 if len(ds) == 0:
     exit()
-dpos = 0
-cpos = -1
-cnex = 1
-ccnt = 0
-vimg = False
-pick = -1
-clock = pygame.time.Clock()
+'''
+print "Load? (y/n)"
+ss = raw_input()
+
+if ss.find('y') != -1:
+    choosed, dpos, cpos = load()
+'''
 while True:
     (x, y) = pygame.mouse.get_pos()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            save(choosed, dpos, cpos)
             pygame.quit()
             exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -76,6 +94,7 @@ while True:
                             <= ly + 50:
                             pick = c.id()
                             tmp.append(c)
+                            choosed[cpos] = pick
                 if pick != -1:
                     if len(tmp) > 0:
                         cs[cpos] = tmp
@@ -87,12 +106,12 @@ while True:
                         dpos = ds[dpos].nxt()
     screen.blit(imglib['bk'], (0, 0))
     if not vimg:
-        ds[dpos].blit(screen, (50, 475), imglib['di'], imglib)
+        ds[dpos].blit(screen, whe(ds[dpos].wh()), imglib['di'], imglib, sfxlib, sfplayer)
         cpos = ds[dpos].ask()
         if cpos != -1 and len(cs[cpos]) > 0:
             for c in cs[cpos]:
                 (lx, ly) = cgetpos(c.id())
-                if len(cs[cpos]) == 1 or x >= lx and x <= lx + 350 \
+                if x >= lx and x <= lx + 350 \
                     and y >= ly and y <= ly + 50:
                     c.blit(screen, (lx, ly), imglib['chiy'])
                 else:

@@ -10,6 +10,7 @@ class Text:
             if sen[len(sen) - 1] == '\n':
                 sen = sen[:-1]
             self.content.append(sen)
+        f.close()
         self.pos = 0
         self.len = 0
 
@@ -31,7 +32,11 @@ class Text:
             if self.content[self.pos].find('dialog') != -1:
                 s = []
                 self.pos += 1
+                sfx = str(self.content[self.pos])
+                self.pos += 1
                 jmp, choi = map(int, self.content[self.pos].strip().split(' '))
+                self.pos += 1
+                wh = int(self.content[self.pos])
                 self.pos += 1
                 im = self.content[self.pos].encode('utf-8')
                 self.pos += 1
@@ -40,9 +45,9 @@ class Text:
                         s.append(self.content[self.pos])
                     self.pos += 1
                 self.pos += 1
-                n = (0, s, jmp, choi, im)
+                n = (0, s, jmp, choi, im, wh, sfx)
 
-                # (type, content, jump to, ask, image)
+                # (type, content, jump to, ask, image, where, sfx)
 
                 return n
             elif self.content[self.pos].find('choice') != -1:
