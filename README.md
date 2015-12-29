@@ -3,8 +3,9 @@
 ###dia.txt
 ```
   dialog (no. | not require)
-  <sfx>
-  (next dialog no. | -1 = None, -2 = Exit) (choice no. | -1 = None)
+  <bgm>
+  <branch point>if san bigger than or equal to point(dialog no. | -1 = None, -2 = Exit) (dialog no.)
+  (choice no. | -1 = None)
   (position)
   (img)
   <content>
@@ -15,8 +16,9 @@
 ###cho.txt
 ```
   choice (no. | not require)
-  <choice>
+  <content>
   (dialog no.)
+  (weight)
   ...
   end
 ```
