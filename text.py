@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 class Text:
 
     def __init__(self, tar):
@@ -34,7 +35,9 @@ class Text:
                 self.pos += 1
                 sfx = str(self.content[self.pos])
                 self.pos += 1
-                jmp, choi = map(int, self.content[self.pos].strip().split(' '))
+                poi, fi, se = map(int, self.content[self.pos].strip().split(' '))
+                self.pos += 1
+                choi = int(self.content[self.pos])
                 self.pos += 1
                 wh = int(self.content[self.pos])
                 self.pos += 1
@@ -45,9 +48,9 @@ class Text:
                         s.append(self.content[self.pos])
                     self.pos += 1
                 self.pos += 1
-                n = (0, s, jmp, choi, im, wh, sfx)
+                n = (0, s, choi, im, wh, sfx, (poi, fi, se))
 
-                # (type, content, jump to, ask, image, where, sfx)
+                # (type, content, ask, image, where, sfx, (beanch))
 
                 return n
             elif self.content[self.pos].find('choice') != -1:
@@ -57,13 +60,16 @@ class Text:
                 while self.content[self.pos].find('end') != 0:
                     if len(self.content[self.pos]) != 0:
                         s = self.content[self.pos]
-                        v = int(self.content[self.pos + 1])
-                        c.append((s, cnt, v))
+                        self.pos += 1
+                        v = int(self.content[self.pos])
+                        self.pos += 1
+                        w = int(self.content[self.pos])
+                        self.pos += 1
+                        c.append((s, cnt, v, w))
 
-                        # (content, id, value)
+                        # (content, id, value, weight)
 
                         cnt += 1
-                    self.pos += 2
                 self.pos += 1
                 n = (1, c)
 

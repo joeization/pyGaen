@@ -1,6 +1,7 @@
 dialog 0
 STOP
-1 -1
+0 -1 -1
+0
 1
 none
 測試用
@@ -8,15 +9,17 @@ end
 
 dialog 1
 STOP
-2 -1
-1
+0 2 8
+-1
+0
 none
 遭遇戰
 end
 
 dialog 2
 battle
--1 0
+0 -1 -1
+1
 1
 koala2
 野生的無尾熊出現了！
@@ -24,32 +27,54 @@ end
 
 dialog 3
 FADE
-5 -1
+0 4 5
+-1
+1
+koala
+開始動作
+end
+
+dialog 4
+STOP
+0 6 6
+-1
 1
 none
 被無尾熊抓傷了
 end
 
-dialog 4
-FADE
-6 -1
+dialog 5
+STOP
+0 7 7
+-1
 1
 none
 什麼也沒發生
 end
 
-dialog 5
+dialog 6
 STOP
--2 -1
-0
+0 -2 -2
+-1
+1
 none
 BE
 end
 
-dialog 6
+dialog 7
 STOP
--2 -1
-0
+0 -2 -2
+-1
+1
 none
 NE
+end
+
+dialog 8
+STOP
+0 -2 -2
+-1
+1
+none
+END
 end

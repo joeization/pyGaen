@@ -1,12 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 class Choice:
 
-    def __init__(self, ct, font, ino, val):
+    def __init__(self, ct, font, ino, val, wei):
         self.content = ct
         self.ino = ino
         self.font = font
         self.value = val
+        self.weight = wei
         self.l = (350 - len(self.content) * 15) / 2
 
     def blit(self, screen, pos, img):
@@ -19,6 +21,9 @@ class Choice:
 
     def to(self):
         return self.value
+
+    def w(self):
+        return self.weight
 
 def cgetpos(i):
     return (225, 100 + i * 75)

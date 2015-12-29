@@ -1,6 +1,7 @@
 dialog (no. | not require)
 <bgm>
-(next dialog no. | -1 = None, -2 = Exit) (choice no. | -1 = None)
+<branch point>if san bigger than or equal to point(dialog no. | -1 = None, -2 = Exit) (dialog no.)
+(choice no. | -1 = None)
 (position)
 (img)
 <content>
@@ -8,7 +9,8 @@ dialog (no. | not require)
 end
 ----------------------------------
 choice (no. | not require)
-<choice>
+<content>
 (dialog no.)
+(weight)
 ...
 end

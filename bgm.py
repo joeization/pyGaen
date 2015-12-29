@@ -1,25 +1,26 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from pygame import mixer as mi
+
+from pygame import mixer as mix
 
 class Bgm:
 
     def __init__(self, sfx):
-        mi.init()
+        mix.init()
         self.sf = sfx
 
     def ld(self, sfx):
         self.sf = sfx
 
     def play(self):
-        mi.music.load(self.sf)
-        mi.music.play(0, 0)
+        mix.music.load(self.sf)
+        mix.music.play(-1, 0)
 
     def stop(self):
-        mi.music.stop()
+        mix.music.stop()
 
     def fade(self):
-        mi.music.fadeout(1000)
+        mix.music.fadeout(1500)
 
 if __name__ == '__main__':
     b = Bgm('sfx/battle.mp3')

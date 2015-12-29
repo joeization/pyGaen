@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import pygame
 import pygame._view
 from dialog import *
@@ -32,12 +33,12 @@ cho = Text('src/dia.txt')
 dia = Text('src/cho.txt')
 ds = []
 cs = []
-choosed = []
 dpos = 0
 cpos = -1
 vimg = False
 pick = -1
 clock = pygame.time.Clock()
+san = 0
 if dia.has():
     while True:
         ne = dia.parse()
@@ -46,11 +47,12 @@ if dia.has():
             break
         elif ne[0] == 0:
             ds.append(Dialog(ne[1], font24, ne[2], ne[3], ne[4], ne[5], ne[6]))
+            #__init__(self, ct, font, chi, im, po, sf, br)
         elif ne[0] == 1:
             cc = []
             for chi in ne[1]:
-                cc.append(Choice(chi[0], font18, chi[1], chi[2]))
-            choosed.append(-1)
+                cc.append(Choice(chi[0], font18, chi[1], chi[2], chi[3]))
+                #__init__(self, ct, font, ino, val, wei)
             cs.append(cc)
 if cho.has():
     while True:
@@ -63,8 +65,7 @@ if cho.has():
         elif ne[0] == 1:
             cc = []
             for chi in ne[1]:
-                cc.append(Choice(chi[0], font18, chi[1], chi[2]))
-            choosed.append(-1)
+                cc.append(Choice(chi[0], font18, chi[1], chi[2], chi[3]))
             cs.append(cc)
 if len(ds) == 0:
     exit()
@@ -73,13 +74,13 @@ print "Load? (y/n)"
 ss = raw_input()
 
 if ss.find('y') != -1:
-    choosed, dpos, cpos = load()
+    dpos, cpos = load()
 '''
 while True:
     (x, y) = pygame.mouse.get_pos()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            save(choosed, dpos, cpos)
+            save(dpos, cpos)
             pygame.quit()
             exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -94,7 +95,6 @@ while True:
                             <= ly + 50:
                             pick = c.id()
                             tmp.append(c)
-                            choosed[cpos] = pick
                 if pick != -1:
                     if len(tmp) > 0:
                         cs[cpos] = tmp
@@ -103,7 +103,7 @@ while True:
                         if ds[dpos].nxt() == -2:
                             pygame.quit()
                             exit()
-                        dpos = ds[dpos].nxt()
+                        dpos = ds[dpos].next(san)
     screen.blit(imglib['bk'], (0, 0))
     if not vimg:
         ds[dpos].blit(screen, whe(ds[dpos].wh()), imglib['di'], imglib, sfxlib, sfplayer)
@@ -120,6 +120,7 @@ while True:
     if pick != -1:
         pygame.time.delay(300)
         dpos = cs[cpos][0].to()
+        san += cs[cpos][0].w()
         cs[cpos] = []
         cpos = -1
         pick = -1
