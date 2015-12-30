@@ -1,4 +1,5 @@
 # pyGaen
+
 ##to use
 ###dia.txt
 ```
@@ -37,10 +38,8 @@
 ### experimental
 
 ##Example
-```
   ###highlight
-  ![highlight](example/highlight.png)
+  ![highlight](example/hightlight.png)
 
   ###run
   ![run](example/run.png)
-```
