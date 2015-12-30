@@ -1,16 +1,16 @@
-dialog (no. | not require)
+dialog (name)
 <bgm>
-<branch point>if san bigger than or equal to point(dialog no. | -1 = None, -2 = Exit) (dialog no.)
-(choice no. | -1 = None)
+<branch point>if san bigger than or equal to point(dialog name | -1 = None, -2 = Exit)(dialog name)
+(choice name | -1 = None)
 (position)
 (img)
 <content>
 ...
 end
 ----------------------------------
-choice (no. | not require)
+choice (name)
 <content>
-(dialog no.)
+(dialog name)
 (weight)
 ...
 end

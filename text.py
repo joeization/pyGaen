@@ -7,17 +7,19 @@ class Text:
         f = open(tar, 'r')
         self.content = []
         for x in f:
-            sen = x.decode('utf-8')
-            if sen[len(sen) - 1] == '\n':
-                sen = sen[:-1]
-            self.content.append(sen)
+            sen = x.decode('utf-8').strip()
+            if len(sen) > 0:
+                if sen[0] != '#':
+                    if sen[len(sen) - 1] == '\n':
+                        sen = sen[:-1]
+                    self.content.append(sen)
         f.close()
         self.pos = 0
         self.len = 0
 
     def out(self):
         for x in self.content:
-            print x.decode('utf-8')
+            print x.encode('utf-8')
 
     def parse(self):
         while self.pos < len(self.content) \
@@ -30,38 +32,40 @@ class Text:
 
             return n
         else:
-            if self.content[self.pos].find('dialog') != -1:
+            if self.content[self.pos].find('dialog') == 0:
                 s = []
+                t, name = self.content[self.pos].strip().split(' ')
                 self.pos += 1
                 sfx = str(self.content[self.pos])
                 self.pos += 1
-                poi, fi, se = map(int, self.content[self.pos].strip().split(' '))
+                poi, fi, se = self.content[self.pos].strip().split(' ')
                 self.pos += 1
-                choi = int(self.content[self.pos])
+                choi = str(self.content[self.pos])
                 self.pos += 1
                 wh = int(self.content[self.pos])
                 self.pos += 1
-                im = self.content[self.pos].encode('utf-8')
+                im = self.content[self.pos]
                 self.pos += 1
-                while self.content[self.pos].find('end') != 0:
+                while not (self.content[self.pos].find('end') == 0 and len(self.content[self.pos]) == 3):
                     if len(self.content[self.pos]) != 0:
                         s.append(self.content[self.pos])
                     self.pos += 1
                 self.pos += 1
-                n = (0, s, choi, im, wh, sfx, (poi, fi, se))
+                n = (0, s, choi, im, wh, sfx, (int(poi), fi, se), name)
 
-                # (type, content, ask, image, where, sfx, (beanch))
+                # (type, content, ask, image, where, sfx, (beanch), name)
 
                 return n
-            elif self.content[self.pos].find('choice') != -1:
+            elif self.content[self.pos].find('choice') ==0:
                 c = []
+                t, name = map(str, self.content[self.pos].strip().split(' '))
                 self.pos += 1
                 cnt = 0
-                while self.content[self.pos].find('end') != 0:
+                while not (self.content[self.pos].find('end') == 0 and len(self.content[self.pos]) == 3):
                     if len(self.content[self.pos]) != 0:
-                        s = self.content[self.pos]
+                        s = self.content[self.pos].strip()
                         self.pos += 1
-                        v = int(self.content[self.pos])
+                        v = self.content[self.pos].strip()
                         self.pos += 1
                         w = int(self.content[self.pos])
                         self.pos += 1
@@ -71,9 +75,9 @@ class Text:
 
                         cnt += 1
                 self.pos += 1
-                n = (1, c)
+                n = (1, c, name)
 
-                # (type, pack)
+                # (type, pack, name)
 
                 return n
             else:

@@ -1,0 +1,10 @@
+{
+    "scope": "source.ga",
+
+    "completions":
+    [
+        "FADE",
+        "STOP",
+        "NONE"
+    ]
+}
