@@ -34,7 +34,7 @@
   sfx_name path
 ```
 
-##Ga is for hilight .ga files
+##Ga is for highlight .ga files
 ### experimental
 
 ##Example
