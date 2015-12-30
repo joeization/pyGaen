@@ -2,10 +2,10 @@
 ##to use
 ###dia.txt
 ```
-  dialog (no. | not require)
+  dialog (name)
   <bgm>
-  <branch point>if san bigger than or equal to point(dialog no. | -1 = None, -2 = Exit) (dialog no.)
-  (choice no. | -1 = None)
+  <branch point>if san bigger than or equal to point(dialog name | -1 = None, -2 = Exit)(dialog name)
+  (choice name | -1 = None)
   (position)
   (img)
   <content>
@@ -15,9 +15,9 @@
 
 ###cho.txt
 ```
-  choice (no. | not require)
+  choice (name)
   <content>
-  (dialog no.)
+  (dialog name)
   (weight)
   ...
   end
@@ -32,7 +32,15 @@
 ```
   sfx_name path
 ```
+
+##Ga is for hilight .ga files
+### experimental
+
 ##Example
 ```
-working
+  ###highlight
+  ![highlight](example/highlight.png)
+
+  ###run
+  ![run](example/run.png)
 ```
