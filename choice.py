@@ -14,7 +14,7 @@ class Choice:
     def blit(self, screen, pos, img):
         screen.blit(img, pos)
         text_surface = self.font.render(self.content, True, (0, 0, 0))
-        screen.blit(text_surface, (pos[0] + self.l, pos[1] + 5))
+        screen.blit(text_surface, (pos[0] + self.l, pos[1] + 15))
 
     def id(self):
         return self.ino
@@ -26,4 +26,4 @@ class Choice:
         return self.weight
 
 def cgetpos(i):
-    return (225, 100 + i * 75)
+    return (225, 200 + i * 62.5)

@@ -23,7 +23,7 @@ dialog 2
     0 -1 -1
     1
     1
-    koala2
+    NONE koala2 NONE
     野生的無尾熊出現了！
 end
 
@@ -32,7 +32,7 @@ dialog 3
     0 4 5
     -1
     1
-    koala
+    NONE koala NONE
     開始動作
 end
 

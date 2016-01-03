@@ -21,6 +21,7 @@ sdist/
 var/
 pic/
 et/
+st/
 *.egg-info/
 .installed.cfg
 *.egg

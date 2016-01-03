@@ -27,13 +27,23 @@ class Dialog:
                 bgpl.play()
         screen.blit(img, pos)
         dy = 10
-        if self.image in imglib:
-            screen.blit(imglib[self.image], (400-imglib[self.image].get_width()/2, 50))
+        cnt = 1
+        for ig in self.image:
+            if ig in imglib:
+                screen.blit(imglib[ig], (200*cnt-imglib[ig].get_width()/2, 50))
+            cnt += 1
         self.bgm = True
         for x in self.content:
             text_surface = self.font.render(x, True, (0, 0, 0))
             screen.blit(text_surface, (pos[0] + 10, pos[1] + dy))
             dy += 25
+
+    def blitimg(self, screen, imglib):
+        cnt = 1
+        for ig in self.image:
+            if ig in imglib:
+                screen.blit(imglib[ig], (200*cnt-imglib[ig].get_width()/2, 50))
+            cnt += 1
 
     def change_content(self, ct):
         self.content = ct
@@ -52,6 +62,9 @@ class Dialog:
             return self.branch[1]
         else:
             return self.branch[2]
+
+    def reset(self):
+        self.bgm = False
 
 def whe(s):
     x = 50

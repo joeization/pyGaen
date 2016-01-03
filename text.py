@@ -44,7 +44,7 @@ class Text:
                 self.pos += 1
                 wh = int(self.content[self.pos])
                 self.pos += 1
-                im = self.content[self.pos]
+                im = self.content[self.pos].strip().split(' ')
                 self.pos += 1
                 while not (self.content[self.pos].find('end') == 0 and len(self.content[self.pos]) == 3):
                     if len(self.content[self.pos]) != 0:

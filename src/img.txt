@@ -5,3 +5,6 @@ chiy img/choice(y)_tra.png
 ava img/avatar.png
 koala img/koala.png
 koala2 img/koala2.png
+sen img/set(n).png
+sey img/set(y).png
+gear img/gear.png

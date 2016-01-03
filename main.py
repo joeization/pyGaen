@@ -2,11 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-import pygame._view
+try:
+    import pygame._view
+except ImportError:
+    pass
 from dialog import *
 from choice import *
 from text import *
-from saveload import *
+from settings import *
 from bgm import *
 from sys import exit
 
@@ -29,6 +32,7 @@ sfplayer = Bgm('')
 
 font18 = pygame.font.SysFont('simhei', 18)
 font24 = pygame.font.SysFont('simhei', 24)
+setting = Settings(font18)
 cho = Text('src/dia.ga')
 dia = Text('src/cho.ga')
 dialoglib = {}
@@ -57,11 +61,11 @@ if dia.has():
 if cho.has():
     while True:
         ne = cho.parse()
-        
+
         if ne[0] == -1:
             break
         elif ne[0] == 0:
-            dialoglib[ne[7]]=(Dialog(ne[1], font24, ne[2], ne[3], ne[4], ne[5], ne[6]))
+            dialoglib[ne[7]] = (Dialog(ne[1], font24, ne[2], ne[3], ne[4], ne[5], ne[6]))
         elif ne[0] == 1:
             cc = []
             for chi in ne[1]:
@@ -70,42 +74,54 @@ if cho.has():
             choicelib[ne[2]] = cc
 if len(dialoglib) == 0:
     exit()
-'''
-print "Load? (y/n)"
-ss = raw_input()
 
-if ss.find('y') != -1:
-    dpos, cpos = load()
-'''
 while True:
     (x, y) = pygame.mouse.get_pos()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            save(dpos, cpos)
             pygame.quit()
             exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 3:
                 vimg = not vimg
-            if event.button == 1 and not vimg:
-                if cpos != '-1':
-                    tmp = []
-                    for c in choicelib[cpos]:
-                        (lx, ly) = cgetpos(c.id())
-                        if x >= lx and x <= lx + 350 and y >= ly and y \
-                            <= ly + 50:
-                            pick = c.id()
-                            tmp.append(c)
-                if pick != -1:
-                    if len(tmp) > 0:
-                        choicelib[cpos] = tmp
-                else:
-                    if dialoglib[dpos].nxt() != '-1':
-                        if dialoglib[dpos].nxt() == '-2':
-                            pygame.quit()
-                            exit()
-                        dpos = dialoglib[dpos].next(san)
+            if event.button == 1:
+                scl = setting.click((x, y), dpos, cpos, san)
+                if scl[0] == 0:
+                    #reverse show
+                    pass
+                elif scl[0] == 1:
+                    #save
+                    pass
+                elif scl[0] == 2:
+                    #load
+                    dialoglib[dpos].reset()
+                    dpos = scl[1][0]
+                    cpos = scl[1][1]
+                    san = scl[1][2]
+                if not vimg and scl[0] == -1:
+                    if cpos != '-1':
+                        #tmp = []
+                        for c in choicelib[cpos]:
+                            (lx, ly) = cgetpos(c.id())
+                            if x >= lx and x <= lx + 350 and y >= ly and y \
+                                <= ly + 50:
+                                pick = c.id()
+                                #tmp.append(c)
+                    if pick != -1:
+                        pass
+                        '''
+                        if len(tmp) > 0:
+                            choicelib[cpos] = tmp
+                        '''
+                    else:
+                        if dialoglib[dpos].nxt() != '-1':
+                            if dialoglib[dpos].nxt() == '-2':
+                                pygame.quit()
+                                exit()
+                            dialoglib[dpos].reset()
+                            dpos = dialoglib[dpos].next(san)
     screen.blit(imglib['bk'], (0, 0))
+    setting.blit(screen, imglib, (x, y))
     if not vimg:
         dialoglib[dpos].blit(screen, whe(dialoglib[dpos].wh()), imglib['di'], imglib, sfxlib, sfplayer)
         cpos = dialoglib[dpos].ask()
@@ -117,12 +133,15 @@ while True:
                     c.blit(screen, (lx, ly), imglib['chiy'])
                 else:
                     c.blit(screen, (lx, ly), imglib['chin'])
+    else:
+        dialoglib[dpos].blitimg(screen, imglib)
     pygame.display.update()
     if pick != -1:
         pygame.time.delay(300)
+        dialoglib[dpos].reset()
         dpos = choicelib[cpos][0].to()
         san += choicelib[cpos][0].w()
-        choicelib[cpos] = []
+        #choicelib[cpos] = []
         cpos = -1
         pick = -1
     clock.tick(60)
