@@ -25,6 +25,6 @@
         because you can use 'Dialog' and
         'Choice' to build a 'Menu'
 
-#ver 0.045
+#ver 0.05
     enhance something(idk)
     now can use PyIntstaller(with main.spec)
