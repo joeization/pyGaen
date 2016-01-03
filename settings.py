@@ -3,6 +3,7 @@
 
 from saveload import *
 
+
 class Settings:
 
     def __init__(self, ft):

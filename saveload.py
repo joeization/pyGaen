@@ -1,6 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import sys
+import os
+
+def resource_path(relative):
+    if hasattr(sys, "_MEIPASS"):
+        # noinspection PyProtectedMember
+        return os.path.join(sys._MEIPASS, relative)
+    return os.path.join(relative)
+
+
 class Saveload:
 
     def __init__(self, ft):
@@ -16,12 +26,12 @@ class Saveload:
         screen.blit(text_surface, (pos[1][0] + 5, pos[1][1] + 15))
 
     def save(self, dpo, cpo, san):
-        sa = open('src/save.txt', 'w')
+        sa = open(resource_path('src/save.txt'), 'w')
         sa.write(str(dpo) + ' ' + str(cpo) + ' ' + str(san))
         sa.close()
 
     def load(self):
-        sa = open('src/save.txt', 'r')
+        sa = open(resource_path('src/save.txt'), 'r')
         for x in sa:
             res = map(str, x.strip().split(' '))
         sa.close()

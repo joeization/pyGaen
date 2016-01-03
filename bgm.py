@@ -3,6 +3,7 @@
 
 from pygame import mixer as mix
 
+
 class Bgm:
 
     def __init__(self, sfx):
@@ -23,7 +24,7 @@ class Bgm:
         mix.music.fadeout(1500)
 
 if __name__ == '__main__':
-    b = Bgm('sfx/battle.mp3')
+    b = Bgm('./sfx/battle.mp3')
     b.play()
     n = input()
     b.stop()

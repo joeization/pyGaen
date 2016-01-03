@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+
 class Choice:
 
     def __init__(self, ct, font, ino, val, wei):

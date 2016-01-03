@@ -3,6 +3,7 @@
 
 from pygame.locals import *
 
+
 class Dialog:
 
     def __init__(self, ct, font, chi, im, po, sf, br):

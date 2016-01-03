@@ -11,30 +11,29 @@ from choice import *
 from text import *
 from settings import *
 from bgm import *
-from sys import exit
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('alpha')
 imglib = {}
-imgres = open('src/img.txt', 'r')
+imgres = open(resource_path('src/img.txt'), 'r')
 for img in imgres:
     n, tar = map(str, img.strip().split(' '))
-    i = pygame.image.load(tar).convert_alpha()
+    i = pygame.image.load(resource_path(tar)).convert_alpha()
     imglib[n] = i
 
 sfxlib = {}
-sfxres = open('src/sfx.txt', 'r')
+sfxres = open(resource_path('src/sfx.txt'), 'r')
 for sfx in sfxres:
     n, tar = map(str, sfx.strip().split(' '))
-    sfxlib[n] = tar
+    sfxlib[n] = resource_path(tar)
 sfplayer = Bgm('')
 
 font18 = pygame.font.SysFont('simhei', 18)
 font24 = pygame.font.SysFont('simhei', 24)
 setting = Settings(font18)
-cho = Text('src/dia.ga')
-dia = Text('src/cho.ga')
+cho = Text(resource_path('src/dia.ga'))
+dia = Text(resource_path('src/cho.ga'))
 dialoglib = {}
 choicelib = {}
 dpos = 'main'
