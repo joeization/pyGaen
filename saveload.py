@@ -27,7 +27,7 @@ class Saveload:
 
     def save(self, dpo, cpo, san):
         sa = open(resource_path('src/save.txt'), 'w')
-        sa.write(str(dpo) + ' ' + str(cpo) + ' ' + str(san))
+        sa.write(str(dpo.encode('utf-8')) + ' ' + str(cpo.encode('utf-8')) + ' ' + str(san))
         sa.close()
 
     def load(self):
@@ -35,7 +35,7 @@ class Saveload:
         for x in sa:
             res = map(str, x.strip().split(' '))
         sa.close()
-        dpo = res[0]
-        cpo = res[1]
+        dpo = res[0].decode('utf-8')
+        cpo = res[1].decode('utf-8')
         san = int(res[2])
         return (dpo, cpo, san)

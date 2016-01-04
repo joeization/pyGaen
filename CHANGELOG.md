@@ -28,3 +28,9 @@
 #ver 0.045
     enhance something(idk)
     now can use PyIntstaller(with main.spec)
+
+#ver 0.05
+    fixed a main bug
+        choice does not work
+    test
+        can run a 100k lines .ga file but need long time to load

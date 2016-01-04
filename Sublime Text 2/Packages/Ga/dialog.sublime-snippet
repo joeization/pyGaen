@@ -1,19 +1,21 @@
 <snippet>
     <content>
     <![CDATA[
-dialog
+dialog $1
     #sfx
     STOP
     #branch
     0 main main
+    #choice
+    -1
     #position
     1
     #img
-    none
+    NONE
     #content
-    $0
+    $2
 end
-    ]]>
+]]>
     </content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>dia</tabTrigger>

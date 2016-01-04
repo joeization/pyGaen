@@ -72,6 +72,7 @@ if cho.has():
             print ne, ne[2]
             choicelib[ne[2]] = cc
 if len(dialoglib) == 0:
+    pygame.quit()
     exit()
 
 while True:
@@ -138,8 +139,8 @@ while True:
     if pick != -1:
         pygame.time.delay(300)
         dialoglib[dpos].reset()
-        dpos = choicelib[cpos][0].to()
-        san += choicelib[cpos][0].w()
+        dpos = choicelib[cpos][pick].to()
+        san += choicelib[cpos][pick].w()
         #choicelib[cpos] = []
         cpos = -1
         pick = -1
