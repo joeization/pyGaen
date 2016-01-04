@@ -25,15 +25,12 @@
         because you can use 'Dialog' and
         'Choice' to build a 'Menu'
 
-#ver 0.05
+#ver 0.045
     enhance something(idk)
     now can use PyIntstaller(with main.spec)
-<<<<<<< HEAD
 
 #ver 0.05
     fixed a main bug
         choice does not work
     test
         can run a 100k lines .ga file but need long time to load
-=======
->>>>>>> 077ef84f0c121b54b18bc66df6326fd460154174
