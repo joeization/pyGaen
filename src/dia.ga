@@ -47,7 +47,7 @@ end
 
 dialog 5
     STOP
-    0 7 7
+    0 normal normal
     -1
     1
     NONE
