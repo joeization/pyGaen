@@ -5,6 +5,17 @@ from pygame.locals import *
 
 
 class Dialog:
+    '''
+    tell the story to player
+    content = content
+    font = font
+    choi = choices
+    image = image(mostly a character)
+    pos = image position
+    sf = sfx
+    branch = next dialog according to the "san"
+    bmg = if we need to play the sfx
+    '''
 
     def __init__(self, ct, font, chi, im, po, sf, br):
         self.content = ct
@@ -40,6 +51,9 @@ class Dialog:
             dy += 25
 
     def blitimg(self, screen, imglib):
+        '''
+        for image-only mode
+        '''
         cnt = 1
         for ig in self.image:
             if ig in imglib:
@@ -67,7 +81,11 @@ class Dialog:
     def reset(self):
         self.bgm = False
 
+
 def whe(s):
+    '''
+    dialog position
+    '''
     x = 50
     y = 75
     if s == 1:

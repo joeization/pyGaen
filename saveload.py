@@ -4,7 +4,11 @@
 import sys
 import os
 
+
 def resource_path(relative):
+    '''
+    resolve the path(PyInstaller)
+    '''
     if hasattr(sys, "_MEIPASS"):
         # noinspection PyProtectedMember
         return os.path.join(sys._MEIPASS, relative)
@@ -12,6 +16,9 @@ def resource_path(relative):
 
 
 class Saveload:
+    '''
+    very simple save & load implementation
+    '''
 
     def __init__(self, ft):
         self.font = ft
@@ -37,5 +44,5 @@ class Saveload:
         sa.close()
         dpo = res[0].decode('utf-8')
         cpo = res[1].decode('utf-8')
-        san = int(res[2])
+        san = long(res[2])
         return (dpo, cpo, san)

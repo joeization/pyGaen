@@ -42,3 +42,14 @@
   ![highlight](example/hightlight.png)
 ###run
   ![run](example/run.png)
+
+##To-Do list
+###simplify code
+###add new features
+  ```
+    show content word by word
+    image animation
+    button effects
+    main menu
+    save/load slots
+  ```

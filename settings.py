@@ -5,6 +5,11 @@ from saveload import *
 
 
 class Settings:
+    '''
+    experimental setting control
+    font = font
+    content = setting component
+    '''
 
     def __init__(self, ft):
         self.font = ft

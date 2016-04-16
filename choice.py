@@ -3,6 +3,16 @@
 
 
 class Choice:
+    '''
+    when you are playing a game
+    there must be choices
+    content = content
+    ino = choice id
+    font = font
+    value = leads to which dialog
+    weight = affect the "san"
+    l = text length
+    '''
 
     def __init__(self, ct, font, ino, val, wei):
         self.content = ct
@@ -26,5 +36,9 @@ class Choice:
     def w(self):
         return self.weight
 
+
 def cgetpos(i):
+    '''
+    get position of the ith choice
+    '''
     return (225, 200 + i * 62.5)
