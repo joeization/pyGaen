@@ -197,7 +197,7 @@ def main():
                         player "click" on something
                         and the dialog has choices
                         '''
-                        if cpos != '-1':
+                        if cpos != u'-1':
                             for c in choicelib[cpos]:
                                 (lx, ly) = cgetpos(c.id())
                                 if x >= lx and x <= lx + 350 and y >= ly and y <= ly + 50:
@@ -212,12 +212,13 @@ def main():
                             '''
                             there has a further dialog
                             '''
-                            if dialoglib[dpos].nxt() != '-1':
-                                if dialoglib[dpos].nxt() == '-2':
-                                    pygame.quit()
-                                    sys.exit()
-                                dialoglib[dpos].reset()
-                                dpos = dialoglib[dpos].next(san)
+                            if dialoglib[dpos].check():
+                                if dialoglib[dpos].nxt() != '-1':
+                                    if dialoglib[dpos].nxt() == '-2':
+                                        pygame.quit()
+                                        sys.exit()
+                                    dialoglib[dpos].reset()
+                                    dpos = dialoglib[dpos].next(san)
         '''
         blit a background
         before we blit others

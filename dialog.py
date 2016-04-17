@@ -45,7 +45,7 @@ class Dialog:
                 bgpl.stop()
                 bgpl.ld(sfxlib[self.sf])
                 bgpl.play()
-        self.bmg = True
+        self.bgm = True
 
     def showimg(self, screen, img, pos, imglib):
         screen.blit(img, pos)
@@ -114,6 +114,13 @@ class Dialog:
         self.word = 0
         self.line = 0
         self.prevtime = -1
+
+    def check(self):
+        if self.line != len(self.content):
+            self.line = len(self.content)
+            return False
+        else:
+            return True
 
 
 def whe(s):
