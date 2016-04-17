@@ -27,7 +27,15 @@ class Dialog:
         self.branch = br
         self.bgm = False
 
-    def blit(self, screen, pos, img, imglib, sfxlib, bgpl):
+        '''
+        following is experimental features
+        '''
+
+        self.line = 0
+        self.word = 0
+        self.prevtime = -1
+
+    def playbgm(self, sfxlib, bgpl):
         if not self.bgm:
             if self.sf == 'STOP':
                 bgpl.stop()
@@ -37,18 +45,41 @@ class Dialog:
                 bgpl.stop()
                 bgpl.ld(sfxlib[self.sf])
                 bgpl.play()
+        self.bmg = True
+
+    def showimg(self, screen, img, pos, imglib):
         screen.blit(img, pos)
-        dy = 10
         cnt = 1
         for ig in self.image:
             if ig in imglib:
                 screen.blit(imglib[ig], (200*cnt-imglib[ig].get_width()/2, 50))
             cnt += 1
-        self.bgm = True
-        for x in self.content:
-            text_surface = self.font.render(x, True, (0, 0, 0))
-            screen.blit(text_surface, (pos[0] + 10, pos[1] + dy))
-            dy += 25
+
+    def showtext(self, screen, pos, tick):
+        if self.prevtime == -1:
+            self.prevtime = tick-100
+        if self.line < len(self.content) and tick-self.prevtime >= 100:
+            self.word += 1
+            self.prevtime = tick
+            if self.word >= len(self.content[self.line]):
+                self.line += 1
+                self.word = 0
+        dy = 10
+        x = 0
+        while x <= self.line:
+            if x < len(self.content):
+                if x < self.line:
+                    text_surface = self.font.render(self.content[x], True, (0, 0, 0))
+                else:
+                    text_surface = self.font.render(self.content[x][:self.word], True, (0, 0, 0))
+                screen.blit(text_surface, (pos[0] + 10, pos[1] + dy))
+                dy += 25
+            x += 1
+
+    def blit(self, screen, pos, img, imglib, sfxlib, bgpl, tick):
+        self.playbgm(sfxlib, bgpl)
+        self.showimg(screen, img, pos, imglib)
+        self.showtext(screen, pos, tick)
 
     def blitimg(self, screen, imglib):
         '''
@@ -80,6 +111,9 @@ class Dialog:
 
     def reset(self):
         self.bgm = False
+        self.word = 0
+        self.line = 0
+        self.prevtime = -1
 
 
 def whe(s):

@@ -81,3 +81,19 @@ dialog 8
     END
 end
 
+dialog multi
+    #sfx
+    STOP
+    #branch
+    0 8 8
+    #choice
+    -1
+    #position
+    1
+    #img
+    NONE
+    #content
+    多行文字測試
+    第二行
+    third line
+end

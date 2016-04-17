@@ -228,7 +228,7 @@ def main():
         not a image-only mode
         '''
         if not vimg:
-            dialoglib[dpos].blit(screen, whe(dialoglib[dpos].wh()), imglib['di'], imglib, sfxlib, sfplayer)
+            dialoglib[dpos].blit(screen, whe(dialoglib[dpos].wh()), imglib['di'], imglib, sfxlib, sfplayer, pygame.time.get_ticks())
             cpos = dialoglib[dpos].ask()
             if cpos != '-1' and len(choicelib[cpos]) > 0:
                 for c in choicelib[cpos]:
