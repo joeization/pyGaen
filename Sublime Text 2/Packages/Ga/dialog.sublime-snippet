@@ -2,6 +2,8 @@
     <content>
     <![CDATA[
 dialog $1
+    #talker
+    NONE
     #sfx
     STOP
     #branch
@@ -11,6 +13,8 @@ dialog $1
     #position
     1
     #img
+    NONE
+    #bk img
     NONE
     #content
     $2
