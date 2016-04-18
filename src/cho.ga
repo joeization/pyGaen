@@ -8,8 +8,8 @@ choice 0
     文字測試
     multi
     0
-    測試
-    戰鬥開始
+    返回
+    main
     0
 end
 

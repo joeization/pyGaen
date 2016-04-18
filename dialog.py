@@ -8,24 +8,26 @@ class Dialog:
     '''
     tell the story to player
     content = content
-    font = font
     choi = choices
     image = image(mostly a character)
     pos = image position
     sf = sfx
     branch = next dialog according to the "san"
     bmg = if we need to play the sfx
+    talk = talker's name
+    bkimg = background
     '''
 
-    def __init__(self, ct, font, chi, im, po, sf, br):
+    def __init__(self, ct, chi, im, po, sf, br, na, bk):
         self.content = ct
-        self.font = font
         self.choi = chi
         self.image = im
         self.pos = po
         self.sf = sf
         self.branch = br
         self.bgm = False
+        self.talk = na
+        self.bkimg = bk
 
         '''
         following is experimental features
@@ -33,7 +35,7 @@ class Dialog:
 
         self.line = 0
         self.word = 0
-        self.prevtime = -1
+        self.prevtime = -100
 
     def playbgm(self, sfxlib, bgpl):
         if not self.bgm:
@@ -47,17 +49,17 @@ class Dialog:
                 bgpl.play()
         self.bgm = True
 
-    def showimg(self, screen, img, pos, imglib):
-        screen.blit(img, pos)
+    def showimg(self, screen, pos, imglib):
+        if self.bkimg != 'NONE':
+            screen.blit(imglib[self.bkimg], (0, 0))
+        screen.blit(imglib['di'], pos)
         cnt = 1
         for ig in self.image:
             if ig in imglib:
                 screen.blit(imglib[ig], (200*cnt-imglib[ig].get_width()/2, 50))
             cnt += 1
 
-    def showtext(self, screen, pos, tick):
-        if self.prevtime == -1:
-            self.prevtime = tick-100
+    def showtext(self, screen, pos, tick, imglib, font):
         if self.line < len(self.content) and tick-self.prevtime >= 100:
             self.word += 1
             self.prevtime = tick
@@ -69,17 +71,21 @@ class Dialog:
         while x <= self.line:
             if x < len(self.content):
                 if x < self.line:
-                    text_surface = self.font.render(self.content[x], True, (0, 0, 0))
+                    text_surface = font[0].render(self.content[x], True, (0, 0, 0))
                 else:
-                    text_surface = self.font.render(self.content[x][:self.word], True, (0, 0, 0))
+                    text_surface = font[0].render(self.content[x][:self.word], True, (0, 0, 0))
                 screen.blit(text_surface, (pos[0] + 10, pos[1] + dy))
                 dy += 25
             x += 1
+        if self.talk != 'NONE':
+            screen.blit(imglib['name'], (pos[0]-10, pos[1]-25))
+            text_surface = font[1].render(self.talk, True, (0, 0, 0))
+            screen.blit(text_surface, (pos[0]-5, pos[1]-20))
 
-    def blit(self, screen, pos, img, imglib, sfxlib, bgpl, tick):
+    def blit(self, screen, pos, imglib, sfxlib, bgpl, tick, font):
         self.playbgm(sfxlib, bgpl)
-        self.showimg(screen, img, pos, imglib)
-        self.showtext(screen, pos, tick)
+        self.showimg(screen, pos, imglib)
+        self.showtext(screen, pos, tick, imglib, font)
 
     def blitimg(self, screen, imglib):
         '''
@@ -113,7 +119,7 @@ class Dialog:
         self.bgm = False
         self.word = 0
         self.line = 0
-        self.prevtime = -1
+        self.prevtime = -100
 
     def check(self):
         if self.line != len(self.content):

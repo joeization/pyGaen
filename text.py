@@ -53,9 +53,13 @@ class Text:
                 choi = choice tag
                 wh = dialog position
                 im = dialog image
+                na = talker's name
+                bk = background
                 '''
                 s = []
                 t, name = self.content[self.pos].strip().split(' ')
+                self.pos += 1
+                na = self.content[self.pos]
                 self.pos += 1
                 sfx = str(self.content[self.pos])
                 self.pos += 1
@@ -66,6 +70,8 @@ class Text:
                 wh = long(self.content[self.pos])
                 self.pos += 1
                 im = self.content[self.pos].strip().split(' ')
+                self.pos += 1
+                bk = self.content[self.pos]
                 self.pos += 1
 
                 '''
@@ -80,7 +86,7 @@ class Text:
                 '''
                 create a dialog
                 '''
-                n = (0, s, choi, im, wh, sfx, (long(poi), fi, se), name)
+                n = (0, s, choi, im, wh, sfx, (long(poi), fi, se), name, na, bk)
 
                 # (type, content, ask, image, where, sfx, (beanch), name)
 

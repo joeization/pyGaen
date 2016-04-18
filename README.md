@@ -4,11 +4,13 @@
 ###dia.txt
 ```
   dialog (name)
+  (talker's name)
   <bgm>
-  <branch point>if san bigger than or equal to point(dialog name | -1 = None, -2 = Exit)(dialog name)
+  <branch point>if san greater than or equal to point(dialog name | -1 = None, -2 = Exit)(dialog name)
   (choice name | -1 = None)
   (position)
   (img)
+  (background)
   <content>
   ...
   end

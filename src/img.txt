@@ -8,3 +8,6 @@ koala2 img/koala2.png
 sen img/set(n).png
 sey img/set(y).png
 gear img/gear.png
+name img/name.png
+cat img/cat.png
+over img/over.png

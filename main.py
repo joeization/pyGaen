@@ -28,6 +28,7 @@ def main():
     init pygame
     '''
     pygame.init()
+    pygame.font.init()
     screen = pygame.display.set_mode((800, 600), 0, 32)
     pygame.display.set_caption('alpha')
 
@@ -61,13 +62,14 @@ def main():
     '''
     setup fonts
     '''
-    font18 = pygame.font.SysFont('simhei', 18)
-    font24 = pygame.font.SysFont('simhei', 24)
+    ft18 = pygame.font.SysFont('simhei', 18)
+    ft24 = pygame.font.SysFont('simhei', 24)
+    ftpk = (ft24, ft18)
 
     '''
     setup settings with the font
     '''
-    setting = Settings(font18)
+    setting = Settings(ft18)
 
     '''
     load and setup choice and dialog library
@@ -113,12 +115,12 @@ def main():
             if ne[0] == -1:
                 break
             elif ne[0] == 0:
-                dialoglib[ne[7]] = (Dialog(ne[1], font24, ne[2], ne[3], ne[4], ne[5], ne[6]))
+                dialoglib[ne[7]] = (Dialog(ne[1], ne[2], ne[3], ne[4], ne[5], ne[6], ne[8], ne[9]))
                 #__init__(self, ct, font, chi, im, po, sf, br)
             elif ne[0] == 1:
                 cc = []
                 for chi in ne[1]:
-                    cc.append(Choice(chi[0], font18, chi[1], chi[2], chi[3]))
+                    cc.append(Choice(chi[0], ft18, chi[1], chi[2], chi[3]))
                     #__init__(self, ct, font, ino, val, wei)
                 choicelib[ne[2]] = cc
 
@@ -135,11 +137,11 @@ def main():
             if ne[0] == -1:
                 break
             elif ne[0] == 0:
-                dialoglib[ne[7]] = (Dialog(ne[1], font24, ne[2], ne[3], ne[4], ne[5], ne[6]))
+                dialoglib[ne[7]] = (Dialog(ne[1], ne[2], ne[3], ne[4], ne[5], ne[6], ne[8], ne[9]))
             elif ne[0] == 1:
                 cc = []
                 for chi in ne[1]:
-                    cc.append(Choice(chi[0], font18, chi[1], chi[2], chi[3]))
+                    cc.append(Choice(chi[0], ft18, chi[1], chi[2], chi[3]))
                 print ne, ne[2]
                 choicelib[ne[2]] = cc
 
@@ -229,7 +231,7 @@ def main():
         not a image-only mode
         '''
         if not vimg:
-            dialoglib[dpos].blit(screen, whe(dialoglib[dpos].wh()), imglib['di'], imglib, sfxlib, sfplayer, pygame.time.get_ticks())
+            dialoglib[dpos].blit(screen, whe(dialoglib[dpos].wh()), imglib, sfxlib, sfplayer, pygame.time.get_ticks(), ftpk)
             cpos = dialoglib[dpos].ask()
             if cpos != '-1' and len(choicelib[cpos]) > 0:
                 for c in choicelib[cpos]:
@@ -256,7 +258,6 @@ def main():
             dialoglib[dpos].reset()
             dpos = choicelib[cpos][pick].to()
             san += choicelib[cpos][pick].w()
-            #choicelib[cpos] = []
             cpos = -1
             pick = -1
 

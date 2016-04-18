@@ -1,8 +1,10 @@
 dialog main
+    system
     STOP
     0 -1 -1
     0
     1
+    NONE
     NONE
     測試用
     #註解測試
@@ -10,78 +12,115 @@ dialog main
 end
 
 dialog 戰鬥開始
+    NONE
     STOP
-    0 2 8
+    0 2 2
     -1
     0
+    NONE
     NONE
     遭遇戰
 end
 
 dialog 2
+    NONE
+    NONE
+    0 say say
+    -1
+    1
+    NONE
+    NONE
+    貓(LV99)出現了！
+end
+
+dialog say
+    #talker
+    貓
+    #sfx
     battle
+    #branch
     0 -1 -1
+    #choice
     1
+    #position
     1
-    NONE koala2 NONE
-    野生的無尾熊出現了！
+    #img
+    NONE cat NONE
+    NONE
+    #content
+    愚蠢的人類...
 end
 
 dialog 3
+    NONE
     FADE
     0 4 5
     -1
     1
-    NONE koala NONE
-    開始動作
+    NONE
+    NONE
+    你準備著動作
 end
 
 dialog 4
+    NONE
     STOP
     0 6 6
     -1
     1
     NONE
-    被無尾熊抓傷了
+    NONE
+    貓(LV99)使出了爪擊!
+    效果十分顯著
 end
 
 dialog 5
+    NONE
     STOP
     0 normal normal
     -1
     1
     NONE
-    什麼也沒發生
+    NONE
+    你離開了貓的視線
 end
 
 dialog 6
+    NONE
     STOP
-    0 -2 -2
+    0 bad bad
     -1
     1
     NONE
-    BE
+    NONE
+    你感覺到一股暈眩
+    隨即倒在地上
 end
 
 dialog normal
+    NONE
     STOP
     0 -2 -2
     -1
     1
     NONE
-    NE
+    NONE
+    Normal End
 end
 
 dialog 8
+    NONE
     STOP
     0 -2 -2
     -1
     1
+    NONE
     NONE
     END
 end
 
 dialog multi
+    系統
     #sfx
     STOP
     #branch
@@ -92,8 +131,29 @@ dialog multi
     1
     #img
     NONE
+    #bk
+    NONE
     #content
     多行文字測試
     第二行
     third line
+end
+
+dialog bad
+    #talker
+    NONE
+    #sfx
+    STOP
+    #branch
+    0 -2 -2
+    #choice
+    -1
+    #position
+    1
+    #img
+    NONE
+    #bk
+    over
+    #content
+    Bad End
 end

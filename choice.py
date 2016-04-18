@@ -41,4 +41,4 @@ def cgetpos(i):
     '''
     get position of the ith choice
     '''
-    return (225, 200 + i * 62.5)
+    return (225, 150 + i * 62.5)
