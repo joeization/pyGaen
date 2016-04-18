@@ -50,10 +50,11 @@ class Dialog(object):
                 bgpl.play()
         self.bgm = True
 
-    def showimg(self, screen, pos, imglib):
+    def showimg(self, screen, pos, imglib, talk):
         if self.bkimg != 'NONE':
             screen.blit(imglib[self.bkimg], (0, 0))
-        screen.blit(imglib['di'], pos)
+        if talk:
+            screen.blit(imglib['di'], pos)
         cnt = 1
         for ig in self.image:
             if ig in imglib:
@@ -85,7 +86,7 @@ class Dialog(object):
 
     def blit(self, screen, pos, imglib, sfxlib, bgpl, tick, font):
         self.playbgm(sfxlib, bgpl)
-        self.showimg(screen, pos, imglib)
+        self.showimg(screen, pos, imglib, True)
         self.showtext(screen, pos, tick, imglib, font)
 
     def change_content(self, ct):

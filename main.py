@@ -160,7 +160,7 @@ def main():
                     else:
                         c.blit(screen, (lx, ly), imglib['chin'])
         else:
-            dialoglib[dpos].showimg(screen, whe(dialoglib[dpos].wh()), imglib)
+            dialoglib[dpos].showimg(screen, whe(dialoglib[dpos].wh()), imglib, False)
 
         setting.blit(screen, imglib, (x, y))
         pygame.display.update()
