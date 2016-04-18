@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 
-class Choice:
-    '''
+class Choice(object):
+    '''Choice
     when you are playing a game
     there must be choices
+
     content = content
     ino = choice id
     font = font

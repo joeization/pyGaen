@@ -4,8 +4,8 @@
 from pygame import mixer as mix
 
 
-class Bgm:
-    '''
+class Bgm(object):
+    '''Bgm player
     sfx(or bgm) player
     '''
 

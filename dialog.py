@@ -4,10 +4,11 @@
 from pygame.locals import *
 
 
-class Dialog:
-    '''
+class Dialog(object):
+    '''Dialog
     tell the story to player
     content = content
+
     choi = choices
     image = image(mostly a character)
     pos = image position

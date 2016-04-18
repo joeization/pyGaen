@@ -15,8 +15,8 @@ def resource_path(relative):
     return os.path.join(relative)
 
 
-class Saveload:
-    '''
+class Saveload(object):
+    '''Saveload implementation
     very simple save & load implementation
     '''
 

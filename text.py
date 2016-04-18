@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 
-class Text:
+class Text(object):
+    '''Load dialog and choice files
+    to parse a dialog/choice file
+    it is not necessary to separate into 2 files
+    first we need to load the text
+    '''
 
     def __init__(self, tar):
-        '''
-        to parse a dialog/choice file
-        it is not necessary to separate into 2 files
-        first we need to load the text
-        '''
         f = open(tar, 'r')
         self.content = []
         for x in f:
