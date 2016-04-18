@@ -49,6 +49,7 @@ dialog say
     NONE
     #content
     愚蠢的人類...
+    你還是走到了這一步
 end
 
 dialog 3

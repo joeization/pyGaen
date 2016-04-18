@@ -88,16 +88,6 @@ class Dialog(object):
         self.showimg(screen, pos, imglib)
         self.showtext(screen, pos, tick, imglib, font)
 
-    def blitimg(self, screen, imglib):
-        '''
-        for image-only mode
-        '''
-        cnt = 1
-        for ig in self.image:
-            if ig in imglib:
-                screen.blit(imglib[ig], (200*cnt-imglib[ig].get_width()/2, 50))
-            cnt += 1
-
     def change_content(self, ct):
         self.content = ct
 
