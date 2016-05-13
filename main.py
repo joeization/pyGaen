@@ -11,18 +11,10 @@ from bgm import *
 from dialog import *
 from settings import *
 from text import *
+from log import *
 
 
 def main():
-    '''
-    1. init pygame then create window
-    2. load image and sfx
-    3. setup sfxplayer
-    4. load contents
-    5. setup other stuff
-    6. setup dialog flag ans choice flag
-    7. run
-    '''
 
     pygame.init()
     pygame.font.init()
@@ -62,7 +54,12 @@ def main():
     cpos = '-1'
     pick = -1
 
-    vimg = False
+    vmode = 0
+    '''
+    0 = normal
+    1 = image
+    2 = log
+    '''
 
     clock = pygame.time.Clock()
 
@@ -79,10 +76,6 @@ def main():
             elif ne[0] == 0:
                 dialoglib[ne[7]] = ne
                 ddone = True
-                '''
-                dialoglib[ne[7]] = (Dialog(ne[1], ne[2], ne[3],
-                            ne[4], ne[5], ne[6], ne[8], ne[9]))
-                '''
     del dia
 
     if cho.has():
@@ -93,13 +86,6 @@ def main():
                 break
             elif ne[0] == 1:
                 choicelib[ne[2]] = ne
-                '''
-                cc = []
-                for chi in ne[1]:
-                    cc.append(Choice(chi[0], ft18, chi[1], chi[2], chi[3]))
-                print ne, ne[2]
-                choicelib[ne[2]] = cc
-                '''
     del cho
 
     if not ddone:
@@ -110,12 +96,14 @@ def main():
     cdone = False
     ce = []
 
+    log = Log()
 
     while True:
         if not ddone:
             dg = Dialog(dialoglib[dpos][1], dialoglib[dpos][2], dialoglib[dpos][3],
                 dialoglib[dpos][4], dialoglib[dpos][5], dialoglib[dpos][6],
                 dialoglib[dpos][8], dialoglib[dpos][9])
+            log.add(dg.log())
             ddone = True
             cpos = dg.ask()
         if not cdone:
@@ -133,8 +121,20 @@ def main():
                 sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+
                 if event.button == 3:
-                    vimg = not vimg
+                    if vmode == 0:
+                        vmode = 3
+                    elif vmode == 3:
+                        vmode = 0
+
+                if event.button == 4:
+                    if vmode == 0:
+                        vmode = 2
+
+                if event.button == 5:
+                    if vmode == 2:
+                        vmode = 0
 
                 if event.button == 1:
                     scl = setting.click((x, y), dpos, cpos, san)
@@ -151,7 +151,7 @@ def main():
                         cpos = scl[1][1]
                         san = scl[1][2]
 
-                    if not vimg and scl[0] == -1:
+                    if vmode == 0 and scl[0] == -1:
                         if cpos != u'-1':
                             for c in ce:
                                 (lx, ly) = cgetpos(c.id())
@@ -172,7 +172,7 @@ def main():
                                     ddone = False
                                     cdone = False
         screen.blit(imglib['bk'], (0, 0))
-        if not vimg:
+        if vmode == 0:
             dg.blit(screen, whe(dg.wh()), imglib,
                             sfxlib, sfplayer, pygame.time.get_ticks(), ftpk)
             if len(ce) > 0:
@@ -186,12 +186,19 @@ def main():
         else:
             dg.showimg(screen, whe(dg.wh()), imglib, False)
 
+        if vmode == 1:
+            dg.showimg(screen, whe(dg.wh()), imglib, False)
+        elif vmode == 2:
+            screen.blit(imglib['lg'], (200, 100))
+            log.blit(screen, ft24)
+
         setting.blit(screen, imglib, (x, y))
         pygame.display.update()
 
         if pick != -1:
             pygame.time.delay(300)
             dg.reset()
+            log.add(ce[pick].log())
             dpos = ce[pick].to()
             san += ce[pick].w()
             ddone = False

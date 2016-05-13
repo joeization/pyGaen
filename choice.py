@@ -11,7 +11,7 @@ class Choice(object):
     ino = choice id
     font = font
     value = leads to which dialog
-    weight = affect the "san"
+    weight = affect the 'san'
     l = text length
     '''
 
@@ -36,6 +36,10 @@ class Choice(object):
 
     def w(self):
         return self.weight
+
+    def log(self):
+        s = ['<'+self.content+'>\n']
+        return s
 
 
 def cgetpos(i):

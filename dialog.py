@@ -120,6 +120,17 @@ class Dialog(object):
         else:
             return True
 
+    def log(self):
+        s = []
+        if self.talk != 'NONE':
+            s.append(self.talk + ':\n')
+            for x in self.content:
+                s.append(' '+x+'\n')
+        else:
+            for x in self.content:
+                s.append(x+'\n')
+        return s
+
 
 def whe(s):
     '''

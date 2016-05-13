@@ -12,3 +12,4 @@ name img/name.png
 cat img/cat.png
 over img/over.png
 load img/load.png
+lg img/lg.png

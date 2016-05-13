@@ -37,3 +37,6 @@
 
 #ver 0.10
     reduced memory usage
+
+#ver 0.11
+    can see previous texts
