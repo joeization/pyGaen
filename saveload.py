@@ -33,12 +33,12 @@ class Saveload(object):
         screen.blit(text_surface, (pos[1][0] + 5, pos[1][1] + 15))
 
     def save(self, dpo, cpo, san):
-        sa = open(resource_path('src/save.txt'), 'w')
+        sa = open(resource_path('src/save.dat'), 'wb')
         sa.write(str(dpo.encode('utf-8')) + ' ' + str(cpo.encode('utf-8')) + ' ' + str(san))
         sa.close()
 
     def load(self):
-        sa = open(resource_path('src/save.txt'), 'r')
+        sa = open(resource_path('src/save.dat'), 'rb')
         for x in sa:
             res = map(str, x.strip().split(' '))
         sa.close()

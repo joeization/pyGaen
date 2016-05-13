@@ -18,7 +18,7 @@ class Bgm(object):
 
     def play(self):
         mix.music.load(self.sf)
-        mix.music.play(-1, 0)
+        mix.music.play(0, 0)
 
     def stop(self):
         mix.music.stop()

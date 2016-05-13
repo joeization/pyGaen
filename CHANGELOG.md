@@ -34,3 +34,6 @@
         choice does not work
     test
         can run a 100k lines .ga file but need long time to load
+
+#ver 0.10
+    reduced memory usage
