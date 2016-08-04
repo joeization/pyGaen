@@ -53,10 +53,8 @@
 
 ###add new features
 
-  ```
-    [x]show content word by word
-    []image animation
-    []button effects
-    []main menu
-    []save/load slots
-  ```
+-  [x] show content word by word
+-  [ ] image animation
+-  [ ] button effects
+-  [ ] main menu
+-  [ ] save/load slots
