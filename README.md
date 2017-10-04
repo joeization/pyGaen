@@ -1,7 +1,7 @@
 # pyGaen
 
-##to use
-###dia.txt
+## to use
+### dia.txt
 ```
   dialog (name)
   (talker's name)
@@ -16,7 +16,7 @@
   end
 ```
 
-###cho.txt
+### cho.txt
 ```
   choice (name)
   <content>
@@ -26,32 +26,32 @@
   end
 ```
   
-###img.txt
+### img.txt
 ```
   img_name path
 ```
 
-###sfx.txt
+### sfx.txt
 ```
   sfx_name path
 ```
 
-##Ga is for highlight .ga files
+## Ga is for highlight .ga files
 ### experimental
 
-##Example
+## Example
 
-###highlight
+### highlight
   ![highlight](example/hightlight.png)
 
-###run
+### run
   ![run](example/run.png)
 
-##To-Do list
+## To-Do list
 
-###simplify code
+### simplify code
 
-###add new features
+### add new features
 
 -  [x] show content word by word
 -  [ ] image animation
